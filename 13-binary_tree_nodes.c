@@ -12,7 +12,8 @@ size_t binary_tree_preorder_cp(const binary_tree_t *tree)
 
 	if (!tree)
 		return (0);
-	i++;
+	if (tree->left || tree->right) /* Check if the current node is a leaf */
+		i++;
 	if (tree->left)
 		i += binary_tree_preorder_cp(tree->left);
 	if (tree->right)
@@ -20,12 +21,12 @@ size_t binary_tree_preorder_cp(const binary_tree_t *tree)
 	return (i);
 }
 /**
- * binary_tree_size - measures the size of a binary tree
+ * binary_tree_nodes - counts the nodes with at least 1 child in a binary tree.
  *
  * @tree: is a pointer to the root node of the tree to measure the size
- * Return: The size of the binary tree.
+ * Return: The counts the leaves in a binary tree.
  */
-size_t binary_tree_size(const binary_tree_t *tree)
+size_t binary_tree_nodes(const binary_tree_t *tree)
 {
 	return (binary_tree_preorder_cp(tree));
 }
